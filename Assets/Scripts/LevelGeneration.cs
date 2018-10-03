@@ -9,7 +9,7 @@ public class LevelGeneration : MonoBehaviour
     Room[,] rooms;
     List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY;
-    public GameObject placeHolder;
+    public GameObject roomTemplate, pathTemplate;
 
     void Start()
     {
@@ -221,8 +221,71 @@ public class LevelGeneration : MonoBehaviour
         {
             if (room != null)
             {
-                Vector3 v3 = new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100);
-                Instantiate(placeHolder, v3, Quaternion.identity);
+                Instantiate(roomTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
+                if (room.doorLeft && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
+                {
+                    int pathPos = (int)(Random.value * 3 + 1);
+                    if (pathPos == 1)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100 + 10), Quaternion.identity);
+                    }
+                    else if (pathPos == 2)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100 - 10), Quaternion.identity);
+                    }
+                }
+                if (room.doorRight && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
+                {
+                    int pathPos = (int)(Random.value * 3 + 1);
+                    if (pathPos == 1)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100 + 10), Quaternion.identity);
+                    }
+                    else if (pathPos == 2)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), Quaternion.identity);
+                    }
+                    else
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100 - 10), Quaternion.identity);
+                    }
+                }
+                if (room.doorTop && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
+                {
+                    int pathPos = (int)(Random.value * 3 + 1);
+                    if (pathPos == 1)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 10, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
+                    }
+                    else if (pathPos == 2)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
+                    }
+                    else
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 10, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
+                    }
+                }
+                if (room.doorBottom && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
+                {
+                    int pathPos = (int)(Random.value * 3 + 1);
+                    if (pathPos == 1)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 10, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
+                    }
+                    else if (pathPos == 2)
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
+                    }
+                    else
+                    {
+                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 10, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
+                    }
+                }
             }
         }
     }

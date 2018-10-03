@@ -295,6 +295,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114076917204260472, guid: 534189cf75764e94f9cb9e74093c7f82,
+        type: 2}
+      propertyPath: pathTemplate
+      value: 
+      objectReference: {fileID: 1797568016773674, guid: 779a16d41b229874180a878450d7128a,
+        type: 2}
+    - target: {fileID: 114076917204260472, guid: 534189cf75764e94f9cb9e74093c7f82,
+        type: 2}
+      propertyPath: roomTemplate
+      value: 
+      objectReference: {fileID: 1507712071357598, guid: 9aabcfa324fbafa468024b4dc0106407,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 534189cf75764e94f9cb9e74093c7f82, type: 2}
   m_IsPrefabAsset: 0
