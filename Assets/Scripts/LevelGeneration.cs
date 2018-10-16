@@ -11,6 +11,9 @@ public class LevelGeneration : MonoBehaviour
     int gridSizeX, gridSizeY;
     public GameObject roomTemplate, pathTemplate;
 
+    public GameObject[] blueprints = new GameObject[11];
+    public GameObject[] outerWalls = new GameObject[8];
+
     void Start()
     {
         if(numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
@@ -27,7 +30,7 @@ public class LevelGeneration : MonoBehaviour
     void CreateRooms()
     {
         rooms = new Room[gridSizeX * 2, gridSizeY * 2];
-        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 1);
+        rooms[gridSizeX, gridSizeY] = new Room(Vector2.zero, 0);
         takenPositions.Insert(0, Vector2.zero);
         Vector2 checkPos = Vector2.zero;
 
@@ -52,7 +55,7 @@ public class LevelGeneration : MonoBehaviour
                     print("error: could not create with fewer neighbors than: " + NumberOfNeighbors(checkPos, takenPositions));
             }
 
-            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, 0);
+            rooms[(int)checkPos.x + gridSizeX, (int)checkPos.y + gridSizeY] = new Room(checkPos, (int)Random.Range(1,10));
             takenPositions.Insert(0, checkPos);
         }
     }
@@ -221,70 +224,112 @@ public class LevelGeneration : MonoBehaviour
         {
             if (room != null)
             {
-                Instantiate(roomTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
-                if (room.doorLeft && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
+                GameObject roomFloor = Instantiate(roomTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
+                GameObject roomWalls;
+                switch (room.roomType)
                 {
-                    int pathPos = (int)(Random.value * 3 + 1);
-                    if (pathPos == 1)
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100 + 10), Quaternion.identity);
-                    }
-                    else if (pathPos == 2)
+                    case 0:
+                        roomWalls = blueprints[0];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 1:
+                        roomWalls = blueprints[1];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 2:
+                        roomWalls = blueprints[2];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 3:
+                        roomWalls = blueprints[3];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 4:
+                        roomWalls = blueprints[4];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+                    case 5:
+                        roomWalls = blueprints[5];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 6:
+                        roomWalls = blueprints[6];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 7:
+                        roomWalls = blueprints[7];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 8:
+                        roomWalls = blueprints[8];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 9:
+                        roomWalls = blueprints[9];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                    case 10:
+                        roomWalls = blueprints[10];
+                        Instantiate(roomWalls, new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                        break;
+
+                }
+                if (room.doorLeft)
+                {
+                    if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
                     {
                         Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), Quaternion.identity);
                     }
-                    else
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100 - 10), Quaternion.identity);
-                    }
+                    Instantiate(outerWalls[0], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                 }
-                if (room.doorRight && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
+                else
                 {
-                    int pathPos = (int)(Random.value * 3 + 1);
-                    if (pathPos == 1)
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100 + 10), Quaternion.identity);
-                    }
-                    else if (pathPos == 2)
+                    Instantiate(outerWalls[1], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                }
+                if (room.doorRight)
+                {
+                    if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
                     {
                         Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), Quaternion.identity);
                     }
-                    else
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100 - 10), Quaternion.identity);
-                    }
+                    Instantiate(outerWalls[2], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                 }
-                if (room.doorTop && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
+                else
                 {
-                    int pathPos = (int)(Random.value * 3 + 1);
-                    if (pathPos == 1)
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 10, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
-                    }
-                    else if (pathPos == 2)
+                    Instantiate(outerWalls[3], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                }
+                if (room.doorTop)
+                {
+                    if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
                     {
                         Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
                     }
-                    else
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 10, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
-                    }
+                    Instantiate(outerWalls[4], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                 }
-                if (room.doorBottom && !Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
+                else
                 {
-                    int pathPos = (int)(Random.value * 3 + 1);
-                    if (pathPos == 1)
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 10, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
-                    }
-                    else if (pathPos == 2)
+                    Instantiate(outerWalls[5], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                }
+                if (room.doorBottom)
+                {
+                    if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
                     {
                         Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
                     }
-                    else
-                    {
-                        Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 10, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
-                    }
+                    Instantiate(outerWalls[6], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(outerWalls[7], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                 }
             }
         }
