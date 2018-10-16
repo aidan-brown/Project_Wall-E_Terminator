@@ -57,7 +57,7 @@ public class weapon_switching : MonoBehaviour {
 
     }
 
-    //set which weapon to be shown on screen
+    //function to set which weapon to be shown on screen
     void SelectWeapon()
     {
         int i = 0;
