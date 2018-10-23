@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1673648852526900}
+  m_IsPrefabAsset: 1
+--- !u!1 &1673648852526900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4342608045061050}
+  - component: {fileID: 114076917204260472}
+  m_Layer: 0
+  m_Name: LevelGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4342608045061050
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673648852526900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114076917204260472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673648852526900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6576f455543994fa55cb8f25c41147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfRooms: 20
+  worldSize: {x: 4, y: 4}
+  roomTemplate: {fileID: 1507712071357598, guid: 9aabcfa324fbafa468024b4dc0106407,
+    type: 2}
+  pathTemplate: {fileID: 1799964385670582, guid: efd72cf12a4a1b54cb4c9ef893f05a15,
+    type: 2}
+  blueprints:
+  - {fileID: 1500459181964442, guid: 81d32ccdc127bca4b9f5552c4bcab76d, type: 2}
+  - {fileID: 1041158072616500, guid: a6bb1d753d2ff5d49bfe9bd43fc6ed2c, type: 2}
+  - {fileID: 1722478325621222, guid: f5339acb55caafd4e912a3087a608bb3, type: 2}
+  - {fileID: 1401168438393892, guid: e7d4ce77982b0394698a3ed6151640fc, type: 2}
+  - {fileID: 1123201962720350, guid: d1aa1a43c3fce024cb2421f7477f0efd, type: 2}
+  - {fileID: 1062748722853552, guid: b7a08b6dd6e4d8c41b40bb4468356059, type: 2}
+  - {fileID: 1876802356533064, guid: a518bbe5b3ecf874281adaccf769948e, type: 2}
+  - {fileID: 1764883980615558, guid: 85b31965eb8e0f244a3835cad7c5890e, type: 2}
+  - {fileID: 1562490136363386, guid: 8d9b111432252ca4286be6277eb277f2, type: 2}
+  - {fileID: 1291598744412566, guid: 6bc6fae9180be3743a4f647dba3a2de1, type: 2}
+  - {fileID: 1729523260708906, guid: c8dc95d5af8473d45998b3112980cc5c, type: 2}
+  outerWalls:
+  - {fileID: 1463357366883796, guid: a608332fbdd07bd439857bdc35ec8aa7, type: 2}
+  - {fileID: 1129126986511192, guid: af6a9f61cadee57439eebce2298929f2, type: 2}
+  - {fileID: 1438691172837216, guid: f503f1809ba4b5f4b982e9ad3cb73f69, type: 2}
+  - {fileID: 1720062395257694, guid: d86b69205672a404c85d225f948ff495, type: 2}
+  - {fileID: 1157095236956654, guid: 7c8ae4f636193ee4cbc0cb03f8ad4c27, type: 2}
+  - {fileID: 1622818836820576, guid: d07e2e5b4f7473f419731f75128cbcb9, type: 2}
+  - {fileID: 1745797512767148, guid: d734adce529cdac42b436f81ac2a54e9, type: 2}
+  - {fileID: 1386594849045138, guid: e0c6bba29a86ef34596960df7e7f4650, type: 2}
