@@ -249,13 +249,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1535273818}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 823, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
 --- !u!1001 &1754367633
 Prefab:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ Prefab:
         type: 2}
       propertyPath: pathTemplate
       value: 
-      objectReference: {fileID: 1797568016773674, guid: 779a16d41b229874180a878450d7128a,
+      objectReference: {fileID: 1799964385670582, guid: efd72cf12a4a1b54cb4c9ef893f05a15,
         type: 2}
     - target: {fileID: 114076917204260472, guid: 534189cf75764e94f9cb9e74093c7f82,
         type: 2}
@@ -425,6 +425,18 @@ Prefab:
       propertyPath: outerWalls.Array.data[7]
       value: 
       objectReference: {fileID: 1386594849045138, guid: e0c6bba29a86ef34596960df7e7f4650,
+        type: 2}
+    - target: {fileID: 114076917204260472, guid: 534189cf75764e94f9cb9e74093c7f82,
+        type: 2}
+      propertyPath: bossRoom
+      value: 
+      objectReference: {fileID: 1925034989507134, guid: 353c3bfff568df141adf254ca6cdcac9,
+        type: 2}
+    - target: {fileID: 114076917204260472, guid: 534189cf75764e94f9cb9e74093c7f82,
+        type: 2}
+      propertyPath: bossPath
+      value: 
+      objectReference: {fileID: 1612561548548810, guid: 1ef9d3bb8dd41fa498bb865bba078eef,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 534189cf75764e94f9cb9e74093c7f82, type: 2}

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4099668110925950}
   m_Layer: 0
-  m_Name: RoomBlueprint(5)
+  m_Name: RoomBlueprint(5) 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
