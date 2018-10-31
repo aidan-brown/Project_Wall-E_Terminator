@@ -18,4 +18,6 @@ public abstract class Weapon : MonoBehaviour
 
 	// should set counter = fireRate at the end and swap between right and left arm
 	public abstract void fire();
+	public abstract void show();
+	public abstract void hide();
 }

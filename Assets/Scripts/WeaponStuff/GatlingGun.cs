@@ -6,6 +6,17 @@ public class GatlingGun : Weapon
 {
 	public GameObject bullet, barrelL, barrelR;
 	private bool rightArm = true;
+	public Renderer rend;
+
+	public override void hide()
+	{
+		rend.enabled = false;
+	}
+
+	public override void show()
+	{
+		rend.enabled = true;
+	}
 
 	public override void fire()
 	{

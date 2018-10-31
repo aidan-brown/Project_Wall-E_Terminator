@@ -42,8 +42,13 @@ public class WeaponManager : MonoBehaviour
 			if (Input.GetKeyDown(keyCodes[i]))
 			{
 				activeWeapon = i;
+
+				foreach (Weapon w in weapons)
+				{
+					w.hide();
+				}
+				weapons[i].show();
 				break;
-				// does all the stuff with hiding the old weapon and showing the new one
 			}
 		}
 	}
