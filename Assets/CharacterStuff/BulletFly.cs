@@ -23,6 +23,6 @@ public class BulletFly : MonoBehaviour {
     void OnCollisionEnter(Collision collision)
     {
         if (!(collision.collider.name == "Character") && !(collision.collider.name == "Bullet(Clone)"))
-            Destroy(gameObject);    
-    }
+            Destroy(gameObject);
+	}
 }
