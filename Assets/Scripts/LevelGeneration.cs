@@ -233,7 +233,7 @@ public class LevelGeneration : MonoBehaviour
             {
                 if (room.roomType != 11)
                 {
-                    GameObject roomFloor = Instantiate(roomTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
+                    GameObject roomFloor = Instantiate(roomTemplate, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), Quaternion.identity);
                     GameObject roomWalls;
                     switch (room.roomType)
                     {
@@ -295,7 +295,7 @@ public class LevelGeneration : MonoBehaviour
                     {
                         if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
                         {
-                            Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), Quaternion.identity);
+                            //Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), Quaternion.identity);
                         }
                         Instantiate(outerWalls[0], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
@@ -307,7 +307,7 @@ public class LevelGeneration : MonoBehaviour
                     {
                         if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
                         {
-                            Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), Quaternion.identity);
+                            //Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), Quaternion.identity);
                         }
                         Instantiate(outerWalls[2], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
@@ -319,7 +319,7 @@ public class LevelGeneration : MonoBehaviour
                     {
                         if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
                         {
-                            Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
+                           // Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
                         }
                         Instantiate(outerWalls[4], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
@@ -331,7 +331,7 @@ public class LevelGeneration : MonoBehaviour
                     {
                         if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
                         {
-                            Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
+                            //Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
                         }
                         Instantiate(outerWalls[6], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
@@ -342,21 +342,21 @@ public class LevelGeneration : MonoBehaviour
                 }
                 else
                 {
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 100), 1))
+                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50 - 50), 1))
                     {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, -90, 0, 90));
+                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), new Quaternion(0, -90, 0, 90));
                     }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 100), 1))
+                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50 + 50), 1))
                     {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, 90, 0, 90));
+                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), new Quaternion(0, 90, 0, 90));
                     }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 100, 0, room.gridPos.y * 100), 1))
+                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50 - 50, 0, room.gridPos.y * 50), 1))
                     {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
+                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), Quaternion.identity);
                     }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 100, 0, room.gridPos.y * 100), 1))
+                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50 + 50, 0, room.gridPos.y * 50), 1))
                     {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, 180, 0, 180));
+                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), new Quaternion(0, 180, 0, 180));
                     }
                 }
             }
