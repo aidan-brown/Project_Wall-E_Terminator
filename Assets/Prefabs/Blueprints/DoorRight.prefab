@@ -310,3 +310,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: right
+  transform: 0.5
