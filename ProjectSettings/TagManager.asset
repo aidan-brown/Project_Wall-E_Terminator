@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Monster
   - Turner
+  - room
   layers:
   - Default
   - TransparentFX

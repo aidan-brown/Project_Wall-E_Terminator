@@ -227,6 +227,7 @@ public class LevelGeneration : MonoBehaviour
 
     void DrawMap()
     {
+        GameObject boss = null;
         foreach (Room room in rooms)
         {
             if (room != null)
@@ -342,24 +343,39 @@ public class LevelGeneration : MonoBehaviour
                 }
                 else
                 {
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50, 0, (room.gridPos.y - 1) * 50), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50 + 25), new Quaternion(0, -90, 0, 90));
-                    }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 50, 0, (room.gridPos.y + 1) * 50), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50 - 25), new Quaternion(0, 90, 0, 90));
-                    }
-                    if (Physics.CheckSphere(new Vector3((room.gridPos.x - 1) * 50, 0, room.gridPos.y * 50), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50 + 25, 0, room.gridPos.y * 50), Quaternion.identity);
-                    }
-                    if (Physics.CheckSphere(new Vector3((room.gridPos.x + 1) * 50, 0, room.gridPos.y * 50), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 50 - 25, 0, room.gridPos.y * 50), new Quaternion(0, 180, 0, 180));
-                    }
+                    boss = Instantiate(bossRoom, new Vector3(room.gridPos.x * 50 + 25, 0, room.gridPos.y * 50), Quaternion.identity);
                 }
             }
         }
+        GameObject nearest = FindNearest(boss, "room");
+        if (boss.transform.position.x < nearest.transform.position.x)
+        {
+            boss.transform.Rotate(0, 90, 0);
+        }
+        else if (boss.transform.position.x > nearest.transform.position.x)
+        {
+            boss.transform.Rotate(0, -90, 0);
+        }
+        else if (boss.transform.position.z > nearest.transform.position.z)
+        {
+            boss.transform.Rotate(0, 180, 0);
+        }
+    }
+
+    private GameObject FindNearest(GameObject obj, string tag)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+        GameObject nearestObj = null;
+        Vector3 nearestPos = Vector3.positiveInfinity;
+
+        foreach(GameObject tmpObj in objects)
+        {
+            if(Vector3.Min(obj.transform.position - tmpObj.transform.position, nearestPos) != nearestPos)
+            {
+                nearestPos = obj.transform.position - tmpObj.transform.position;
+                nearestObj = tmpObj;
+            }
+        }
+        return nearestObj;
     }
 }
