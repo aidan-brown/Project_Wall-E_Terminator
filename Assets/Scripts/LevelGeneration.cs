@@ -9,7 +9,7 @@ public class LevelGeneration : MonoBehaviour
     Room[,] rooms;
     List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY;
-    public GameObject roomTemplate, pathTemplate, bossRoom, bossPath;
+    public GameObject roomTemplate, pathTemplate, teleRoom;
 
     public GameObject[] blueprints = new GameObject[11];
     public GameObject[] outerWalls = new GameObject[8];
@@ -227,7 +227,7 @@ public class LevelGeneration : MonoBehaviour
 
     void DrawMap()
     {
-        GameObject boss = null;
+        GameObject tele = null;
         foreach (Room room in rooms)
         {
             if (room != null)
@@ -343,36 +343,37 @@ public class LevelGeneration : MonoBehaviour
                 }
                 else
                 {
-                    boss = Instantiate(bossRoom, new Vector3(room.gridPos.x * 50 + 25, 0, room.gridPos.y * 50), Quaternion.identity);
+                    tele = Instantiate(teleRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), Quaternion.identity);
                 }
             }
         }
-        GameObject nearest = FindNearest(boss, "room");
-        if (boss.transform.position.x < nearest.transform.position.x)
+        GameObject nearest = FindNearest(tele, "room");
+        if (tele.transform.position.x < nearest.transform.position.x)
         {
-            boss.transform.Rotate(0, 90, 0);
+            tele.transform.Rotate(0, 180, 0);
         }
-        else if (boss.transform.position.x > nearest.transform.position.x)
+        else if (tele.transform.position.z < nearest.transform.position.z)
         {
-            boss.transform.Rotate(0, -90, 0);
+            tele.transform.Rotate(0, 90, 0);
         }
-        else if (boss.transform.position.z > nearest.transform.position.z)
+        else if (tele.transform.position.z > nearest.transform.position.z)
         {
-            boss.transform.Rotate(0, 180, 0);
+            tele.transform.Rotate(0, -90, 0);
         }
+        tele.transform.Translate(-23, 0, 0);
     }
 
     private GameObject FindNearest(GameObject obj, string tag)
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
         GameObject nearestObj = null;
-        Vector3 nearestPos = Vector3.positiveInfinity;
+        float nearestPos = Mathf.Infinity;
 
         foreach(GameObject tmpObj in objects)
         {
-            if(Vector3.Min(obj.transform.position - tmpObj.transform.position, nearestPos) != nearestPos)
+            if(Mathf.Abs(tmpObj.transform.position.x - obj.transform.position.x) + Mathf.Abs(tmpObj.transform.position.z - obj.transform.position.z) < nearestPos)
             {
-                nearestPos = obj.transform.position - tmpObj.transform.position;
+                nearestPos = Mathf.Abs(tmpObj.transform.position.x - obj.transform.position.x) + Mathf.Abs(tmpObj.transform.position.z - obj.transform.position.z);
                 nearestObj = tmpObj;
             }
         }
