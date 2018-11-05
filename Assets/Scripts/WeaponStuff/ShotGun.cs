@@ -31,7 +31,7 @@ public class ShotGun : Weapon
 		{
 			for (int i = 0; i < numOfShots; i++)
 			{
-				Quaternion bulletAngle = new Quaternion(transform.rotation.x, transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
+				Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
 				clone = Instantiate(bullet, barrelR.transform.position, bulletAngle) as GameObject;
 			}
 			rightArm = false;
@@ -40,7 +40,7 @@ public class ShotGun : Weapon
 		{
 			for (int i = 0; i < numOfShots; i++)
 			{
-				Quaternion bulletAngle = new Quaternion(transform.rotation.x, transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
+				Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
 				clone = Instantiate(bullet, barrelL.transform.position, bulletAngle) as GameObject;
 			}
 			rightArm = true;

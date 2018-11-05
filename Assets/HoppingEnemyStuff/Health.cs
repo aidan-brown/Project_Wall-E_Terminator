@@ -8,7 +8,8 @@ public class Health : MonoBehaviour
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.collider.name == "Bullet(Clone)")
+		
+		if (collision.transform.CompareTag("Bullet"))
 			health--;
 		if (health <= 0)
 		{

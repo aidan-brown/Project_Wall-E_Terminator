@@ -12,11 +12,9 @@ public class HoppingEnemyAttack : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		target = GameObject.Find("Character");
+		target = GameObject.FindGameObjectWithTag("Player");
 		counter = 0;
 		rb = GetComponent<Rigidbody>();
-
-		
 	}
 	
 	// Update is called once per frame

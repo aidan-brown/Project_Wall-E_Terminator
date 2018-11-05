@@ -6,18 +6,20 @@ public class BulletFly : MonoBehaviour {
 
     public float speed;
     public float range;
+	public Rigidbody rb;
 
     void Start()
     {
         Destroy(gameObject, range);
-    }
+		rb.velocity = gameObject.transform.forward * speed;
+	}
 
     // Update is called once per frame
-    void Update ()
+    /*void Update ()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.translate(vector3.forward * speed * time.deltatime);
         
-    }
+    }*/
 
     // destroys the bullet if it hits anything
     void OnCollisionEnter(Collision collision)
