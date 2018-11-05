@@ -31,7 +31,9 @@ public class ShotGun : Weapon
 		{
 			for (int i = 0; i < numOfShots; i++)
 			{
-				Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
+				Vector3 spread = new Vector3(Random.Range(-angle, angle), Random.Range(-angle, angle), 0f);
+				Quaternion bulletAngle = Quaternion.Euler(spread) * barrelR.transform.rotation;
+				//Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
 				clone = Instantiate(bullet, barrelR.transform.position, bulletAngle) as GameObject;
 			}
 			rightArm = false;
@@ -40,7 +42,9 @@ public class ShotGun : Weapon
 		{
 			for (int i = 0; i < numOfShots; i++)
 			{
-				Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
+				Vector3 spread = new Vector3(Random.Range(-angle, angle), Random.Range(-angle, angle), 0f);
+				Quaternion bulletAngle = Quaternion.Euler(spread) * barrelL.transform.rotation;
+				//Quaternion bulletAngle = new Quaternion(transform.rotation.x + Random.Range(-angle, angle), transform.rotation.y + Random.Range(-angle, angle), transform.rotation.z, transform.rotation.w);
 				clone = Instantiate(bullet, barrelL.transform.position, bulletAngle) as GameObject;
 			}
 			rightArm = true;

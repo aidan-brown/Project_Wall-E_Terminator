@@ -12,7 +12,7 @@ public class flameFly : MonoBehaviour
 
 	void Start ()
 	{
-		Destroy(gameObject, 3f);
+		Destroy(gameObject, 1f);
 		rb.velocity = gameObject.transform.forward * speed;
 	}
 

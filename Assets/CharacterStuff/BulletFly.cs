@@ -15,16 +15,16 @@ public class BulletFly : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    /*void Update ()
+    void Update ()
     {
-        transform.translate(vector3.forward * speed * time.deltatime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
         
-    }*/
+    }
 
     // destroys the bullet if it hits anything
     void OnCollisionEnter(Collision collision)
     {
-        if (!(collision.collider.name == "Character") && !(collision.collider.name == "Bullet(Clone)"))
+        if (!(collision.collider.tag == "Player") && !(collision.collider.tag == "Bullet"))
             Destroy(gameObject);
 	}
 }
