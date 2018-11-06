@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 33050353200012258}
   - component: {fileID: 23061710058763076}
   - component: {fileID: 64676707193800164}
+  - component: {fileID: 65530505490199690}
+  - component: {fileID: 114559208277947564}
   m_Layer: 0
   m_Name: RoomFloor
   m_TagString: room
@@ -68,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1044871436558846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 311.7, z: 0}
+  m_LocalPosition: {x: 0, y: 311.7, z: -1}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_Children:
   - {fileID: 4333978733468616}
@@ -187,6 +189,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65530505490199690
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044871436558846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2, z: 10}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114376880373395850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,3 +212,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf2109b82d29284da308c084032c4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114559208277947564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044871436558846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8559155c2b29800489da23c54c82677b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1789664370692780, guid: de642d47c9de89845935cab0a187b81b, type: 2}
