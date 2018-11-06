@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Monster
   - Turner
+<<<<<<< HEAD
   - Bullet
+=======
+  - room
+  - TOut
+>>>>>>> LevelGeneration-fix
   layers:
   - Default
   - TransparentFX

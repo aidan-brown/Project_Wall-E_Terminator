@@ -9,7 +9,7 @@ public class LevelGeneration : MonoBehaviour
     Room[,] rooms;
     List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY;
-    public GameObject roomTemplate, pathTemplate, bossRoom, bossPath;
+    public GameObject roomTemplate, pathTemplate, teleRoom;
 
     public GameObject[] blueprints = new GameObject[11];
     public GameObject[] outerWalls = new GameObject[8];
@@ -227,13 +227,14 @@ public class LevelGeneration : MonoBehaviour
 
     void DrawMap()
     {
+        GameObject tele = null;
         foreach (Room room in rooms)
         {
             if (room != null)
             {
                 if (room.roomType != 11)
                 {
-                    GameObject roomFloor = Instantiate(roomTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
+                    GameObject roomFloor = Instantiate(roomTemplate, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), Quaternion.identity);
                     GameObject roomWalls;
                     switch (room.roomType)
                     {
@@ -293,10 +294,10 @@ public class LevelGeneration : MonoBehaviour
                     }
                     if (room.doorLeft)
                     {
-                        if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
+                        /*if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), 10))
                         {
                             Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 - 50, 0, room.gridPos.y * 100), Quaternion.identity);
-                        }
+                        }*/
                         Instantiate(outerWalls[0], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
                     else
@@ -305,10 +306,10 @@ public class LevelGeneration : MonoBehaviour
                     }
                     if (room.doorRight)
                     {
-                        if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
+                        /*if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), 10))
                         {
                             Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100 + 50, 0, room.gridPos.y * 100), Quaternion.identity);
-                        }
+                        }*/
                         Instantiate(outerWalls[2], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
                     else
@@ -317,10 +318,10 @@ public class LevelGeneration : MonoBehaviour
                     }
                     if (room.doorTop)
                     {
-                        if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
+                        /*if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), 10))
                         {
-                            Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
-                        }
+                           Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 50), new Quaternion(0, 90, 0, 90));
+                        }*/
                         Instantiate(outerWalls[4], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
                     else
@@ -329,10 +330,10 @@ public class LevelGeneration : MonoBehaviour
                     }
                     if (room.doorBottom)
                     {
-                        if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
+                        /*if (!Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), 10))
                         {
                             Instantiate(pathTemplate, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 50), new Quaternion(0, 90, 0, 90));
-                        }
+                        }*/
                         Instantiate(outerWalls[6], new Vector3(roomFloor.transform.position.x, 2.5f, roomFloor.transform.position.z), Quaternion.identity);
                     }
                     else
@@ -342,24 +343,40 @@ public class LevelGeneration : MonoBehaviour
                 }
                 else
                 {
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 - 100), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, -90, 0, 90));
-                    }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100 + 100), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, 90, 0, 90));
-                    }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100 - 100, 0, room.gridPos.y * 100), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), Quaternion.identity);
-                    }
-                    if (Physics.CheckSphere(new Vector3(room.gridPos.x * 100 + 100, 0, room.gridPos.y * 100), 1))
-                    {
-                        Instantiate(bossRoom, new Vector3(room.gridPos.x * 100, 0, room.gridPos.y * 100), new Quaternion(0, 180, 0, 180));
-                    }
+                    tele = Instantiate(teleRoom, new Vector3(room.gridPos.x * 50, 0, room.gridPos.y * 50), Quaternion.identity);
                 }
             }
         }
+        GameObject nearest = FindNearest(tele, "room");
+        if (tele.transform.position.x < nearest.transform.position.x)
+        {
+            tele.transform.Rotate(0, 180, 0);
+        }
+        else if (tele.transform.position.z < nearest.transform.position.z)
+        {
+            tele.transform.Rotate(0, 90, 0);
+        }
+        else if (tele.transform.position.z > nearest.transform.position.z)
+        {
+            tele.transform.Rotate(0, -90, 0);
+        }
+        tele.transform.Translate(-23, 0, 0);
+    }
+
+    private GameObject FindNearest(GameObject obj, string tag)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+        GameObject nearestObj = null;
+        float nearestPos = Mathf.Infinity;
+
+        foreach(GameObject tmpObj in objects)
+        {
+            if(Mathf.Abs(tmpObj.transform.position.x - obj.transform.position.x) + Mathf.Abs(tmpObj.transform.position.z - obj.transform.position.z) < nearestPos)
+            {
+                nearestPos = Mathf.Abs(tmpObj.transform.position.x - obj.transform.position.x) + Mathf.Abs(tmpObj.transform.position.z - obj.transform.position.z);
+                nearestObj = tmpObj;
+            }
+        }
+        return nearestObj;
     }
 }
