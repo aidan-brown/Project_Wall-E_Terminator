@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     int floormask;
     Rigidbody rb;
     Vector3 movement;
+	public bool controller;
 
     // IMPORTANT!!!!!
     // Camera must be set to "Main Camera"
@@ -24,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate ()
     {
         movePlayer();
-        faceMouse();
+		if (controller)
+			faceController();
+		else
+			faceMouse();
 	}
 
     // moves the player
@@ -38,6 +42,23 @@ public class PlayerMovement : MonoBehaviour
         movement = movement.normalized * speed * Time.deltaTime;
         rb.MovePosition(transform.position + movement);
     }
+
+	// makes the player use controller rightstick for turning
+	void faceController()
+	{
+		float x = Input.GetAxisRaw("Horisontal2");
+		float z = Input.GetAxisRaw("Verticle2");
+		
+		if (x != 0.0f || z != 0.0f)
+		{
+			float angle = Mathf.Atan2(z, x) * Mathf.Rad2Deg;
+
+			transform.rotation = Quaternion.Euler(0f, angle, 0f);
+		}
+		//Quaternion newRotation = Quaternion.LookRotation(new Vector3(x, 0, z));
+
+		//rb.MoveRotation(newRotation);
+	}
 
     // turns the player to face the mouse
     void faceMouse()
