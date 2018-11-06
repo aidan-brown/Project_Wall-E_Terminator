@@ -17,7 +17,7 @@ public class PlayerDetect : MonoBehaviour {
     {
         if(other.Equals(playerCol))
         {
-            SpawnEnemies(transform.position, (int)Random.Range(5, 25));
+            SpawnEnemies(transform.position, (int)Random.Range(5, 6));
         }
         Destroy(trigger);
     }

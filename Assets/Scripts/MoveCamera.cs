@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour {
     public string direction;
     GameObject camera, player;
-    Collider playerCol;
+    Collider playerCol, collider;
     public float transform = .5f;
 
 	// Use this for initialization
@@ -13,7 +13,20 @@ public class MoveCamera : MonoBehaviour {
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.FindGameObjectWithTag("Player");
         playerCol = player.GetComponent<BoxCollider>();
+        collider = GetComponent<BoxCollider>();
 	}
+
+    private void Update()
+    {
+        if(GameObject.FindGameObjectWithTag("Monster") == null && !collider.isTrigger)
+        {
+            collider.isTrigger = true;
+        }
+        else if(collider.isTrigger)
+        {
+            collider.isTrigger = false;
+        }
+    }
 
     // Update is called once per frame
     public void OnTriggerEnter(Collider other)
